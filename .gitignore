@@ -1,0 +1,15 @@
+# Obsidian workspace (machine-specific)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/workspaces.json
+
+# Plugin runtime data
+.obsidian/plugins/obsidian-git/data.json
+
+# OS files
+.DS_Store
+.Trash/
+Thumbs.db
+
+# Optional: ignore large attachments if you have them elsewhere
+# attachments/
