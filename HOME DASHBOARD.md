@@ -4,38 +4,7 @@
 
 # Dashboard
 
-## Unresolved Links
-*Links to pages that don't exist yet. Review periodically and create as needed.*
-
-```dataview
-TABLE WITHOUT ID
-  key AS "Missing Page",
-  rows.file.link AS "Referenced In"
-FROM "Journals"
-FLATTEN file.outlinks AS outlink
-WHERE !outlink.file
-GROUP BY outlink AS key
-SORT length(rows) DESC
-```
-
 ---
-
-## Recently Modified
-*Your most recently updated notes.*
-
-```dataview
-TABLE WITHOUT ID
-  file.link AS "Note",
-  file.folder AS "Folder",
-  dateformat(file.mtime, "yyyy-MM-dd HH:mm") AS "Modified"
-FROM ""
-WHERE file.name != "dashboard"
-SORT file.mtime DESC
-LIMIT 10
-```
-
----
-
 ## Open Tasks (All)
 *All incomplete tasks across daily notes.*
 
@@ -109,3 +78,37 @@ FROM "References/Projects"
 WHERE status = "active"
 SORT file.name ASC
 ```
+---
+
+
+
+## Unresolved Links
+*Links to pages that don't exist yet. Review periodically and create as needed.*
+
+```dataview
+TABLE WITHOUT ID
+  key AS "Missing Page",
+  rows.file.link AS "Referenced In"
+FROM "Journals"
+FLATTEN file.outlinks AS outlink
+WHERE !outlink.file
+GROUP BY outlink AS key
+SORT length(rows) DESC
+```
+--- 
+
+## Recently Modified
+*Your most recently updated notes.*
+
+```dataview
+TABLE WITHOUT ID
+  file.link AS "Note",
+  file.folder AS "Folder",
+  dateformat(file.mtime, "yyyy-MM-dd HH:mm") AS "Modified"
+FROM ""
+WHERE file.name != "dashboard"
+SORT file.mtime DESC
+LIMIT 10
+```
+
+---
