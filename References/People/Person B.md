@@ -1,17 +1,17 @@
 ---
 type: person
-name: Bob Johnson
-company: "[[Acme Corp]]"
-department: Engineering
-role: Tech Lead
-relationship: partner
+name: Person B
+company: Company XYZ
+department:
+role:
+relationship: employee
 tags:
   - person
 aliases:
   -
 ---
 
-# Bob Johnson
+# Company A
 
 ## Info
 | Field | Value |
@@ -30,15 +30,23 @@ aliases:
 
 ---
 
-## Meetings
-*Meetings involving this person (full context):*
+## Recent Meetings (Last 30 Days)
 
 ```dataviewjs
 const currentPage = dv.current().file.name;
 const currentAliases = dv.current().aliases || [];
 const searchTerms = [currentPage, ...currentAliases];
 
-const pages = dv.pages('"Journals/Daily"').sort(p => p.file.name, 'desc');
+// Calculate 30 days ago
+const cutoffDate = new Date();
+cutoffDate.setDate(cutoffDate.getDate() - 30);
+const cutoffStr = cutoffDate.toISOString().split('T')[0];
+
+const pages = dv.pages('"Journals/Daily"')
+    .where(p => p.file.name >= cutoffStr)
+    .sort(p => p.file.name, 'desc');
+
+let found = false;
 
 for (let page of pages) {
     const content = await dv.io.load(page.file.path);
@@ -90,6 +98,7 @@ for (let page of pages) {
     }
     
     if (meetingsFound.length > 0) {
+        found = true;
         dv.header(4, page.file.link);
         for (let meeting of meetingsFound) {
             dv.paragraph(meeting);
@@ -97,12 +106,60 @@ for (let page of pages) {
         dv.paragraph("---");
     }
 }
+
+if (!found) {
+    dv.paragraph("*No meetings in the last 30 days.*");
+}
+```
+
+---
+
+## All Meetings
+
+```dataviewjs
+const currentPage = dv.current().file.name;
+const currentAliases = dv.current().aliases || [];
+const searchTerms = [currentPage, ...currentAliases];
+
+const rows = [];
+const pages = dv.pages('"Journals/Daily"').sort(p => p.file.name, 'desc');
+
+for (let page of pages) {
+    const content = await dv.io.load(page.file.path);
+    const lines = content.split('\n');
+    
+    let inMeetingsSection = false;
+    
+    for (let line of lines) {
+        if (line.match(/^## Meetings/i)) {
+            inMeetingsSection = true;
+            continue;
+        }
+        if (inMeetingsSection && line.match(/^## /) && !line.match(/^## Meetings/i)) {
+            inMeetingsSection = false;
+            continue;
+        }
+        if (inMeetingsSection && line.match(/^### /)) {
+            const hasLink = searchTerms.some(term => 
+                line.includes(`[[${term}]]`) || line.includes(`[[${term}|`)
+            );
+            if (hasLink) {
+                rows.push([page.file.link, line.replace(/^### /, '')]);
+            }
+        }
+    }
+}
+
+if (rows.length > 0) {
+    dv.table(["Date", "Meeting"], rows);
+} else {
+    dv.paragraph("*No meetings found.*");
+}
 ```
 
 ---
 
 ## All Mentions
-*Other references to this person:*
 
 ```dataview
 TABLE WITHOUT ID
@@ -111,6 +168,7 @@ TABLE WITHOUT ID
 FROM "Journals"
 FLATTEN file.lists AS L
 WHERE contains(L.text, this.file.name)
+WHERE !contains(meta(L.section).subpath, "Meetings")
 SORT file.name DESC
 LIMIT 15
 ```

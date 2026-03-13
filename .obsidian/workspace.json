@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "5d18d377c28975c3",
+        "id": "44033d0ced6b8396",
         "type": "tabs",
         "children": [
           {
-            "id": "407e20a47d6a7068",
+            "id": "c94027c1c948329c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Journals/Daily/2026-01-03.md",
+                "file": "References/People/Person B.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-01-03"
+              "title": "Person B"
+            }
+          },
+          {
+            "id": "4a9d3b40b9108c23",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "_README"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -94,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Journals/Daily/2026-01-03.md",
+                "file": "Journals/Daily/2026-01-07.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +119,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 2026-01-03"
+              "title": "Backlinks for 2026-01-07"
             }
           },
           {
@@ -113,11 +128,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Journals/Daily/2026-01-07.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from 2026-01-07"
             }
           },
           {
@@ -155,12 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "_README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of _README"
             }
           },
           {
@@ -174,7 +191,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -182,6 +199,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "quickadd:QuickAdd": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -189,39 +207,41 @@
       "bases:Create new base": false,
       "templater-obsidian:Templater": false,
       "homepage:Open homepage": false,
-      "periodic-notes:Open today": false,
-      "omnisearch:Omnisearch": false
+      "omnisearch:Omnisearch": false,
+      "periodic-notes:Open today": false
     }
   },
-  "active": "407e20a47d6a7068",
+  "active": "89e5c21e4e0bda38",
   "lastOpenFiles": [
+    "References/Projects/My Team Project.md",
     "2026-W01.md",
-    "Journals/Daily/2026-01-03.md",
-    "Journals/Daily/2026-01-04.md",
-    "Journals/Daily/2026-01-07.md",
+    "Journals/Daily/2026-03-11.md",
     "References/Home.md",
-    "Journals/Daily/2026-01-06.md",
-    "Journals/Daily/2026-01-05.md",
-    "README.md",
-    "Templates/project.md",
-    "Templates/person.md",
-    "Templates/monthly.md",
-    "Templates/daily.md",
-    "Templates/company.md",
-    "References/Projects/Lattice SDK.md",
-    "References/Helpers/plugin examples.md",
+    "Journals/Monthly/2026-03.md",
     "References/Helpers/daily-links.md",
-    "Journals/Monthly/2026-01.md",
-    "References/Helpers",
-    "References/Companies/Acme Corp.md",
+    "Journals/Daily/2026-03-12.md",
+    "References/People/Person A.md",
+    "References/Companies/Company ABC.md",
+    "References/People/Person B.md",
+    "References/Helpers/plugin examples.md",
+    "References/Companies/Company XYZ.md",
+    "References/Companies/Company 123.md",
+    "Templates/company.md",
+    "Billy Gibbons.md",
     "References/People/Bob Johnson.md",
-    "References/People/Jane Smith.md",
-    "References/People/Joe Dane.md",
-    "References/People/Mike Wilson.md",
-    "References/People/Sarah Chen.md",
-    "_references/daily-links.md",
-    "_references/dashboard.md",
-    "Old/daily-links 1.md",
+    "References/Companies/Acme Corp.md",
+    "Journals/Monthly/2026-01.md",
+    "Journals/Daily/2026-02-09.md",
+    "Journals/Daily/2026-01-07.md",
+    "Journals/Daily/2026-01-03.md",
+    "Journals/Daily/2026-01-05.md",
+    "_README.md",
+    "testing cli.md",
+    "Genny G.md",
+    "Tony Testeria.md",
+    "Untitled 1.canvas",
+    "Untitled.canvas",
+    "References/Helpers",
     "Templates",
     "Journals/Monthly",
     "Journals/Daily",

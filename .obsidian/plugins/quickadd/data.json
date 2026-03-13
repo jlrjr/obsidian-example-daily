@@ -17,12 +17,7 @@
         "createInSameFolderAsActiveFile": false,
         "chooseFromSubfolders": false
       },
-      "appendLink": {
-        "enabled": true,
-        "placement": "replaceSelection",
-        "requireActiveFile": false,
-        "linkType": "link"
-      },
+      "appendLink": false,
       "openFile": false,
       "fileOpening": {
         "location": "tab",
@@ -42,7 +37,7 @@
   "globalVariables": {},
   "onePageInputEnabled": false,
   "disableOnlineFeatures": true,
-  "enableRibbonIcon": false,
+  "enableRibbonIcon": true,
   "showCaptureNotification": true,
   "showInputCancellationNotification": false,
   "enableTemplatePropertyTypes": false,

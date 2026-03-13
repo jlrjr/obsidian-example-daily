@@ -1,28 +1,32 @@
 ---
-type: company
-name: Acme Corp
-company_type: partner
-primary_contact: 
+type: person
+name: Person A
+company: Company ABC
+department:
+role:
+relationship: employee
 tags:
-  - company
+  - person
 aliases:
-  - Acme
+  -
 ---
 
-# Acme Corp
+# Company A
 
 ## Info
 | Field | Value |
 |-------|-------|
-| Type | `= this.company_type` |
-| Primary Contact | `= this.primary_contact` |
+| Company | `= this.company` |
+| Department | `= this.department` |
+| Role | `= this.role` |
+| Relationship | `= this.relationship` |
 
 ---
 
 ## Notes
-*General notes about this company.*
+*General notes about this person.*
 
-Partner company for Lattice SDK integration. Q2 roadmap alignment.
+
 
 ---
 
@@ -112,39 +116,45 @@ if (!found) {
 
 ## All Meetings
 
-```dataview
-TABLE WITHOUT ID
-  file.link AS "Date",
-  L.text AS "Meeting"
-FROM "Journals/Daily"
-FLATTEN file.lists AS L
-WHERE contains(L.text, this.file.name) OR any(this.aliases, (a) => contains(L.text, a))
-WHERE meta(L.section).subpath = "Meetings"
-SORT file.name DESC
-```
+```dataviewjs
+const currentPage = dv.current().file.name;
+const currentAliases = dv.current().aliases || [];
+const searchTerms = [currentPage, ...currentAliases];
 
----
+const rows = [];
+const pages = dv.pages('"Journals/Daily"').sort(p => p.file.name, 'desc');
 
-## People
+for (let page of pages) {
+    const content = await dv.io.load(page.file.path);
+    const lines = content.split('\n');
+    
+    let inMeetingsSection = false;
+    
+    for (let line of lines) {
+        if (line.match(/^## Meetings/i)) {
+            inMeetingsSection = true;
+            continue;
+        }
+        if (inMeetingsSection && line.match(/^## /) && !line.match(/^## Meetings/i)) {
+            inMeetingsSection = false;
+            continue;
+        }
+        if (inMeetingsSection && line.match(/^### /)) {
+            const hasLink = searchTerms.some(term => 
+                line.includes(`[[${term}]]`) || line.includes(`[[${term}|`)
+            );
+            if (hasLink) {
+                rows.push([page.file.link, line.replace(/^### /, '')]);
+            }
+        }
+    }
+}
 
-```dataview
-TABLE WITHOUT ID
-  file.link AS "Name",
-  role AS "Role",
-  department AS "Department"
-FROM "References/People"
-WHERE contains(company, this.file.name) OR contains(company, this.file.link)
-SORT file.name ASC
-```
-
----
-
-## Projects
-
-```dataview
-LIST
-FROM "References/Projects"
-WHERE contains(companies, this.file.name) OR contains(companies, this.file.link)
+if (rows.length > 0) {
+    dv.table(["Date", "Meeting"], rows);
+} else {
+    dv.paragraph("*No meetings found.*");
+}
 ```
 
 ---
@@ -160,5 +170,15 @@ FLATTEN file.lists AS L
 WHERE contains(L.text, this.file.name)
 WHERE !contains(meta(L.section).subpath, "Meetings")
 SORT file.name DESC
-LIMIT 25
+LIMIT 15
+```
+
+---
+
+## Related Projects
+
+```dataview
+LIST
+FROM "References/Projects"
+WHERE contains(people, this.file.link) OR contains(people, this.file.name)
 ```

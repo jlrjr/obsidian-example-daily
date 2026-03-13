@@ -30,6 +30,8 @@ Enable Community Plugins in Settings → Community Plugins → Turn on community
 |---|---|
 |**Natural Language Dates**|Type `@tomorrow` or `@next friday` for due dates.|
 |**Linter**|Auto-formats markdown on save. Set once, forget it.|
+https://github.com/mgmeyers/obsidian-list-callouts
+https://github.com/scambier/obsidian-omnisearch
 
 ### 2. Plugin Configuration
 
@@ -302,12 +304,3 @@ The dataview queries on People, Project, and Company pages will automatically fi
 ```
 
 ---
-
-## Plugins Not Included (And Why)
-
-|Plugin|Why Skip It|
-|---|---|
-|**Obsidian Tasks**|Powerful but complex. Your checkbox + tags + rollover setup is simpler.|
-|**Kanban**|Adds overhead. Project pages with dataview already cover project tracking.|
-|**Database Folder**|Notion-like databases are overkill when dataview handles your queries.|
-|**Excalidraw**|Great for diagrams but not core to this workflow. Add later if needed.|

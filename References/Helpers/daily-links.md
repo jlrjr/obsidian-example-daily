@@ -3,15 +3,13 @@
 Quick links to embed in daily notes. Edit this list to customize what appears at the top of each daily note.
 
 ## Quick Navigation
-- [[References/Projects/Lattice SDK|Lattice SDK]]
-- [[References/Companies/Anduril|Anduril]]
+- [Fav Link 1](www.nhl.com)
+- [Fav Link 2](www.espn.com)
 
 ## Dashboards
 - `= "[[" + dateformat(date(today), "yyyy-MM") + "]]"` *(Current Month)*
 
 #### Helpful Tags
-
-^3bc801
 
 `#wins` | `#highlight` | `#waiting` | `#high`
 

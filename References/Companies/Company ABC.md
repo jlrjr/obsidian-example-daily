@@ -1,30 +1,26 @@
 ---
-type: person
-name: Joe Dane
-company: 
-department: 
-role: 
-relationship: employee
+type: company
+name: Company ABC
+company_type: internal
+primary_contact:
 tags:
-  - person
+  - company
 aliases:
-  - 
+  -
 ---
 
-# Joe Dane
+# Untitled
 
 ## Info
 | Field | Value |
 |-------|-------|
-| Company | `= this.company` |
-| Department | `= this.department` |
-| Role | `= this.role` |
-| Relationship | `= this.relationship` |
+| Type | `= this.company_type` |
+| Primary Contact | `= this.primary_contact` |
 
 ---
 
 ## Notes
-*General notes about this person.*
+*General notes about this company.*
 
 
 
@@ -159,6 +155,30 @@ if (rows.length > 0) {
 
 ---
 
+## People
+
+```dataview
+TABLE WITHOUT ID
+  file.link AS "Name",
+  role AS "Role",
+  department AS "Department"
+FROM "References/People"
+WHERE contains(company, this.file.name) OR contains(company, this.file.link)
+SORT file.name ASC
+```
+
+---
+
+## Projects
+
+```dataview
+LIST
+FROM "References/Projects"
+WHERE contains(companies, this.file.name) OR contains(companies, this.file.link)
+```
+
+---
+
 ## All Mentions
 
 ```dataview
@@ -170,15 +190,5 @@ FLATTEN file.lists AS L
 WHERE contains(L.text, this.file.name)
 WHERE !contains(meta(L.section).subpath, "Meetings")
 SORT file.name DESC
-LIMIT 15
-```
-
----
-
-## Related Projects
-
-```dataview
-LIST
-FROM "References/Projects"
-WHERE contains(people, this.file.link) OR contains(people, this.file.name)
+LIMIT 25
 ```

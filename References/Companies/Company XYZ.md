@@ -1,39 +1,28 @@
 ---
-type: project
-name: Lattice SDK
-status: active
-summary: Developer SDK for the Lattice platform enabling partner integrations and custom applications.
-companies:
-  - "[[Anduril]]"
-  - "[[Acme Corp]]"
-people:
-  - "[[plugin examples]]"
+type: company
+name: Company XYZ
+company_type: internal
+primary_contact:
 tags:
-  - project
+  - company
 aliases:
-  - SDK
-  - Lattice
+  -
 ---
 
-# Lattice SDK
+# Company XYZ
 
-## Overview
+## Info
 | Field | Value |
 |-------|-------|
-| Status | `= this.status` |
-| Companies | `= this.companies` |
-| People | `= this.people` |
-
-### Summary
-`= this.summary`
+| Type | `= this.company_type` |
+| Primary Contact | `= this.primary_contact` |
 
 ---
 
 ## Notes
-*Project notes, decisions, and updates.*
+*General notes about this company.*
 
-- Q1 goal: Beta release with core API endpoints
-- Focus on OAuth2 authentication for partners
+
 
 ---
 
@@ -123,30 +112,69 @@ if (!found) {
 
 ## All Meetings
 
-```dataview
-TABLE WITHOUT ID
-  file.link AS "Date",
-  L.text AS "Meeting"
-FROM "Journals/Daily"
-FLATTEN file.lists AS L
-WHERE contains(L.text, this.file.name) OR any(this.aliases, (a) => contains(L.text, a))
-WHERE meta(L.section).subpath = "Meetings"
-SORT file.name DESC
+```dataviewjs
+const currentPage = dv.current().file.name;
+const currentAliases = dv.current().aliases || [];
+const searchTerms = [currentPage, ...currentAliases];
+
+const rows = [];
+const pages = dv.pages('"Journals/Daily"').sort(p => p.file.name, 'desc');
+
+for (let page of pages) {
+    const content = await dv.io.load(page.file.path);
+    const lines = content.split('\n');
+    
+    let inMeetingsSection = false;
+    
+    for (let line of lines) {
+        if (line.match(/^## Meetings/i)) {
+            inMeetingsSection = true;
+            continue;
+        }
+        if (inMeetingsSection && line.match(/^## /) && !line.match(/^## Meetings/i)) {
+            inMeetingsSection = false;
+            continue;
+        }
+        if (inMeetingsSection && line.match(/^### /)) {
+            const hasLink = searchTerms.some(term => 
+                line.includes(`[[${term}]]`) || line.includes(`[[${term}|`)
+            );
+            if (hasLink) {
+                rows.push([page.file.link, line.replace(/^### /, '')]);
+            }
+        }
+    }
+}
+
+if (rows.length > 0) {
+    dv.table(["Date", "Meeting"], rows);
+} else {
+    dv.paragraph("*No meetings found.*");
+}
 ```
 
 ---
 
-## Tasks
+## People
 
 ```dataview
 TABLE WITHOUT ID
-  file.link AS "Source",
-  L.text AS "Task"
-FROM "Journals/Daily"
-FLATTEN file.lists AS L
-WHERE contains(L.text, this.file.name)
-WHERE L.task AND !L.completed
-SORT file.name DESC
+  file.link AS "Name",
+  role AS "Role",
+  department AS "Department"
+FROM "References/People"
+WHERE contains(company, this.file.name) OR contains(company, this.file.link)
+SORT file.name ASC
+```
+
+---
+
+## Projects
+
+```dataview
+LIST
+FROM "References/Projects"
+WHERE contains(companies, this.file.name) OR contains(companies, this.file.link)
 ```
 
 ---
@@ -162,23 +190,5 @@ FLATTEN file.lists AS L
 WHERE contains(L.text, this.file.name)
 WHERE !contains(meta(L.section).subpath, "Meetings")
 SORT file.name DESC
-LIMIT 20
+LIMIT 25
 ```
-
----
-
-## Related People
-
-```dataview
-LIST
-FROM "References/People"
-WHERE contains(file.outlinks, this.file.link)
-```
-
----
-
-## Timeline
-*Key dates and milestones.*
-
-- 2026-01-05: Kickoff meeting
-- 2026-01-06: Beta shipped internally

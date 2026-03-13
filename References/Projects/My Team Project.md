@@ -1,32 +1,38 @@
 ---
-type: person
-name: Sarah Chen
-company:
-department:
-role:
-relationship: employee
+type: Technology
+name: Team Project
+status: active
+summary: summary goes here
+companies:
+  - "[[Company XYZ]]"
+people:
+  - "[[Person B]]"
 tags:
-  - person
+  - project
+  - high
 aliases:
-  -
+  - Another name
 ---
 
-# Sarah Chen
+# Lattice SDK
 
-## Info
-| Field | Value |
-|-------|-------|
-| Company | `= this.company` |
-| Department | `= this.department` |
-| Role | `= this.role` |
-| Relationship | `= this.relationship` |
+## Overview
+| Field     | Value              |
+| --------- | ------------------ |
+| Status    | `= this.status`    |
+| Companies | `= this.companies` |
+| People    | `= this.people`    |
+
+### Summary
+`= this.summary`
 
 ---
 
 ## Notes
-*General notes about this person.*
+*Project notes, decisions, and updates.*
 
-
+- Q1 goal: Beta release with core API endpoints
+- Focus on OAuth2 authentication for partners
 
 ---
 
@@ -129,6 +135,21 @@ SORT file.name DESC
 
 ---
 
+## Tasks
+
+```dataview
+TABLE WITHOUT ID
+  file.link AS "Source",
+  L.text AS "Task"
+FROM "Journals/Daily"
+FLATTEN file.lists AS L
+WHERE contains(L.text, this.file.name)
+WHERE L.task AND !L.completed
+SORT file.name DESC
+```
+
+---
+
 ## All Mentions
 
 ```dataview
@@ -140,15 +161,23 @@ FLATTEN file.lists AS L
 WHERE contains(L.text, this.file.name)
 WHERE !contains(meta(L.section).subpath, "Meetings")
 SORT file.name DESC
-LIMIT 15
+LIMIT 20
 ```
 
 ---
 
-## Related Projects
+## Related People
 
 ```dataview
 LIST
-FROM "References/Projects"
-WHERE contains(people, this.file.link) OR contains(people, this.file.name)
+FROM "References/People"
+WHERE contains(file.outlinks, this.file.link)
 ```
+
+---
+
+## Timeline
+*Key dates and milestones.*
+
+- 2026-01-05: Kickoff meeting
+- 2026-01-06: Beta shipped internally

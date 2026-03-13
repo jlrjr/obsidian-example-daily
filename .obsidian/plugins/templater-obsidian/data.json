@@ -16,23 +16,23 @@
   "folder_templates": [
     {
       "folder": "Journals/Daily",
-      "template": "templates/daily.md"
+      "template": "Templates/daily.md"
     },
     {
       "folder": "Journals/Monthly",
-      "template": "templates/monthly.md"
+      "template": "Templates/monthly.md"
     },
     {
       "folder": "References/People",
-      "template": "templates/person.md"
+      "template": "Templates/person.md"
     },
     {
       "folder": "References/Projects",
-      "template": "templates/project.md"
+      "template": "Templates/project.md"
     },
     {
       "folder": "References/Companies",
-      "template": "templates/company.md"
+      "template": "Templates/company.md"
     }
   ],
   "enable_file_templates": false,
