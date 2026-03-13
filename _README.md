@@ -1,4 +1,4 @@
-	# Obsidian Vault Setup
+# Obsidian Vault Setup
 
 ## Quick Start
 

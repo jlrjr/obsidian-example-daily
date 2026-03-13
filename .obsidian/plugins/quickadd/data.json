@@ -12,7 +12,44 @@
       },
       "folder": {
         "enabled": true,
-        "folders": [],
+        "folders": [
+          "References/People"
+        ],
+        "chooseWhenCreatingNote": false,
+        "createInSameFolderAsActiveFile": false,
+        "chooseFromSubfolders": false
+      },
+      "appendLink": {
+        "enabled": true,
+        "placement": "replaceSelection",
+        "requireActiveFile": false,
+        "linkType": "link"
+      },
+      "openFile": false,
+      "fileOpening": {
+        "location": "tab",
+        "direction": "vertical",
+        "mode": "default",
+        "focus": true
+      },
+      "fileExistsMode": "Nothing",
+      "setFileExistsBehavior": true
+    },
+    {
+      "id": "86a2043d-cb3c-4015-8b5b-79fba6252739",
+      "name": "Company",
+      "type": "Template",
+      "command": false,
+      "templatePath": "Templates/company.md",
+      "fileNameFormat": {
+        "enabled": true,
+        "format": ""
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "References/Companies"
+        ],
         "chooseWhenCreatingNote": false,
         "createInSameFolderAsActiveFile": false,
         "chooseFromSubfolders": false
@@ -25,8 +62,38 @@
         "mode": "default",
         "focus": true
       },
-      "fileExistsMode": "Nothing",
-      "setFileExistsBehavior": true
+      "fileExistsMode": "Increment the file name",
+      "setFileExistsBehavior": false
+    },
+    {
+      "id": "d3929f34-5a0d-4a66-8faf-d8f9310fead9",
+      "name": "Project",
+      "type": "Template",
+      "command": false,
+      "templatePath": "Templates/project.md",
+      "fileNameFormat": {
+        "enabled": false,
+        "format": ""
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "References/Projects"
+        ],
+        "chooseWhenCreatingNote": false,
+        "createInSameFolderAsActiveFile": false,
+        "chooseFromSubfolders": false
+      },
+      "appendLink": false,
+      "openFile": false,
+      "fileOpening": {
+        "location": "tab",
+        "direction": "vertical",
+        "mode": "default",
+        "focus": true
+      },
+      "fileExistsMode": "Increment the file name",
+      "setFileExistsBehavior": false
     }
   ],
   "inputPrompt": "single-line",

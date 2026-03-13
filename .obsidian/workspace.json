@@ -4,39 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "44033d0ced6b8396",
+        "id": "7fe4f799573b17ee",
         "type": "tabs",
         "children": [
           {
-            "id": "c94027c1c948329c",
+            "id": "8fdb3d6c63303e2c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "References/People/Person B.md",
+                "file": "HOME DASHBOARD.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Person B"
-            }
-          },
-          {
-            "id": "4a9d3b40b9108c23",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "_README"
+              "title": "HOME DASHBOARD"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -171,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_README.md",
+                "file": "HOME DASHBOARD.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of _README"
+              "title": "Outline of HOME DASHBOARD"
             }
           },
           {
@@ -211,18 +196,22 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "89e5c21e4e0bda38",
+  "active": "8fdb3d6c63303e2c",
   "lastOpenFiles": [
+    "test project.md",
+    "HOME DASHBOARD.md",
+    "Journals/Daily/2026-03-12.md",
+    "References/People/new gal.md",
+    "References/People/Person B.md",
+    "_README.md",
+    "New Guy.md",
     "References/Projects/My Team Project.md",
     "2026-W01.md",
     "Journals/Daily/2026-03-11.md",
-    "References/Home.md",
     "Journals/Monthly/2026-03.md",
     "References/Helpers/daily-links.md",
-    "Journals/Daily/2026-03-12.md",
     "References/People/Person A.md",
     "References/Companies/Company ABC.md",
-    "References/People/Person B.md",
     "References/Helpers/plugin examples.md",
     "References/Companies/Company XYZ.md",
     "References/Companies/Company 123.md",
@@ -235,10 +224,6 @@
     "Journals/Daily/2026-01-07.md",
     "Journals/Daily/2026-01-03.md",
     "Journals/Daily/2026-01-05.md",
-    "_README.md",
-    "testing cli.md",
-    "Genny G.md",
-    "Tony Testeria.md",
     "Untitled 1.canvas",
     "Untitled.canvas",
     "References/Helpers",
